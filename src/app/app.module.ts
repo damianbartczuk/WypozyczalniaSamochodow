@@ -3,14 +3,18 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {PojedynczySamochodComponent} from './pojedynczy-samochod/pojedynczy-samochod.component';
+import {ListaSamochodowComponent} from './lista-samochodow/lista-samochodow.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PojedynczySamochodComponent
+    PojedynczySamochodComponent,
+    ListaSamochodowComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

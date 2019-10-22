@@ -1,11 +1,13 @@
 {
-  "cars": [
+  "samochody": [
     {
       "id": 1,
       "marka": "BMW",
       "model": "Seria 1",
       "logo": "bmwseria1.jpg",
-      "cenaZaDobe": 2000
+      "opis": "Samochdow klasy średniej. Wyprodukowany w Niemczech",
+      "cenaZaDobe": 2000,
+      "czyWypozyczony": false
     }
   ]
 }
