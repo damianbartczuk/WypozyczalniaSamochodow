@@ -1,0 +1,21 @@
+<ul class="listaSamochodo">
+  <li *ngFor="let x of samochody | async">
+    <div class="card pojedynczySamochod" style="width: 18rem;">
+      <img src="{{x.logo}}" class="card-img-top" alt="bmwseria1">
+      <div class="card-body">
+        <h5 class="card-title">{{x.marka}} {{x.model}}</h5>
+        <p class="card-text">{{x.opis}}</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item pojedynczySamochod">Cena za dobę: {{x.cenaZaDobe}}</li>
+        <li class="list-group-item pojedynczySamochod">Czy wypożyczony = {{x.czyWypozyczony}}</li>
+      </ul>
+      <div class="card-body">
+        <a href="#" class="card-link" style="float: contour">
+          <button class="btn btn-primary">Wypożycz</button>
+        </a>
+      </div>
+    </div>
+  </li>
+</ul>
+
