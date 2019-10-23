@@ -7,12 +7,12 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class SamochodyService {
-  private SAMOCHODY_RES_API = '';
+  readonly SAMOCHODY_RES_API = "http://localhost:9020/samochody";
 
   constructor(private http: HttpClient) {
   }
 
   public getSamochody(): Observable<Samochod[]> {
-    return this.http.get<Samochod[]>("http://localhost:9020/samochody");
+    return this.http.get<Samochod[]>(this.SAMOCHODY_RES_API);
   }
 }
