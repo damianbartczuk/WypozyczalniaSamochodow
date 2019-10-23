@@ -4,9 +4,18 @@
       "id": 1,
       "marka": "BMW",
       "model": "Seria 1",
-      "logo": "bmwseria1.jpg",
+      "logo": "assets/bmwseria1.jpg",
       "opis": "Samochdow klasy średniej. Wyprodukowany w Niemczech",
       "cenaZaDobe": 2000,
+      "czyWypozyczony": false
+    },
+    {
+      "id": 2,
+      "marka": "Skoda",
+      "model": "Octavia",
+      "logo": "assets/skodaoctavia.jpg",
+      "opis": "Samochdow klasy średniej. Wyprodukowany w Niemczech",
+      "cenaZaDobe": 1000,
       "czyWypozyczony": false
     }
   ]
