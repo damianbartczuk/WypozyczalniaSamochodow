@@ -18,4 +18,9 @@ export class PojedynczySamochodComponent implements OnInit {
     this.samochody = this.samochodyService.getSamochody();
   }
 
+  wypozyczSamochod(samochod: Samochod) {
+      samochod.czyWypozyczony = true;
+      alert("Brawo ! Właśnie wypożyczyłeś samochod za " + samochod.cenaZaDobe);
+  }
+
 }

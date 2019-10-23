@@ -14,9 +14,18 @@
       "marka": "Skoda",
       "model": "Octavia",
       "logo": "assets/skodaoctavia.jpg",
-      "opis": "Samochdow klasy średniej. Wyprodukowany w Niemczech",
+      "opis": "Nie wiem jaki dać tu opis",
       "cenaZaDobe": 1000,
       "czyWypozyczony": false
+    },
+    {
+      "id": 3,
+      "marka": "BMW",
+      "model": "F30",
+      "logo": "assets/bmwf30.jpg",
+      "opis": "Fajny tylko drogi samochod",
+      "cenaZaDobe": 10000,
+      "czyWypozyczony": true
     }
   ]
 }

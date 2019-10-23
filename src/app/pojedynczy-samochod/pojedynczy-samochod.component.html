@@ -8,12 +8,12 @@
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item pojedynczySamochod">Cena za dobę: {{x.cenaZaDobe}}</li>
-        <li class="list-group-item pojedynczySamochod">Czy wypożyczony = {{x.czyWypozyczony}}</li>
+        <li class="list-group-item pojedynczySamochod">Czy wypożyczony: {{x.czyWypozyczony}}</li>
       </ul>
       <div class="card-body">
-        <a href="#" class="card-link" style="float: contour">
-          <button class="btn btn-primary">Wypożycz</button>
-        </a>
+<!--        <a href="#" class="card-link" style="float: contour">-->
+          <button class="btn btn-primary" [disabled]="x.czyWypozyczony" (click)="wypozyczSamochod(x)">Wypożycz samochód</button>
+<!--        </a>-->
       </div>
     </div>
   </li>
