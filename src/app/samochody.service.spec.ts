@@ -1,11 +1,8 @@
 import {TestBed} from '@angular/core/testing';
-import {HttpClient} from '@angular/common/http';
 import {SamochodyService} from './samochody.service';
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 fdescribe('SamochodyService', () => {
-  let httpClient: HttpClient;
-  let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

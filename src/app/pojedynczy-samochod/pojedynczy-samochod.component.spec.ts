@@ -1,23 +1,26 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {PojedynczySamochodComponent} from './pojedynczy-samochod.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {ListaSamochodowComponent} from '../lista-samochodow/lista-samochodow.component';
 
-describe('PojedynczySamochodComponent', () => {
+fdescribe('PojedynczySamochodComponent', () => {
   let component: PojedynczySamochodComponent;
   let fixture: ComponentFixture<PojedynczySamochodComponent>;
 
   beforeEach((() => {
     TestBed.configureTestingModule({
-      declarations: [ PojedynczySamochodComponent ]
+      declarations: [ PojedynczySamochodComponent, ListaSamochodowComponent ],
+      imports: [HttpClientTestingModule]
     })
     .compileComponents();
   }));
 
-  beforeEach(() => {
+  beforeEach(async (() => {
     fixture = TestBed.createComponent(PojedynczySamochodComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture.autoDetectChanges();
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
