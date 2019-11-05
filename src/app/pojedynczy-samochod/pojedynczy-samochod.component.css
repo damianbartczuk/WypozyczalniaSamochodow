@@ -6,3 +6,7 @@
 .listaSamochodo {
   list-style-type: none;
 }
+ ul > li {
+   display: inline-block;
+   list-style-type:none;
+}
