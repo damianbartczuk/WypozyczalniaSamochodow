@@ -1,6 +1,5 @@
 .pojedynczySamochod {
   background-color: bisque;
-  margin-bottom: 20px;
 }
 
 .listaSamochodo {
@@ -9,4 +8,13 @@
  ul > li {
    display: inline-block;
    list-style-type:none;
+   /*width: 200px !important;*/
+   /*height: 200px !important;*/
+}
+
+ p{
+   height: 40px;
+ }
+.card-img-top{
+  height: 200px;
 }

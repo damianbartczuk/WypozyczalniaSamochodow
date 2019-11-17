@@ -20,7 +20,6 @@ export class PojedynczySamochodComponent implements OnInit {
 
   wypozyczSamochod(samochod: Samochod) {
       samochod.czyWypozyczony = true;
-      alert("Brawo ! Właśnie wypożyczyłeś samochod za " + samochod.cenaZaDobe);
   }
 
 }

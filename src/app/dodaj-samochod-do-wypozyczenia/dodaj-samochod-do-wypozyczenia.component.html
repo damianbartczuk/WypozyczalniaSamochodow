@@ -1,0 +1,38 @@
+<div class="dodaj-samochod-form container" style="height: 300px;">
+  <h1 id="dodaj-samochod-header">Dodaj samochód do wypożyczenia</h1>
+  <form class="" [formGroup]="dodajSamochodForm" (ngSubmit)="sendForm($event)">
+    <mat-form-field>
+      <label>
+        <input name="marka" matInput placeholder="Marka">
+      </label>
+    </mat-form-field>
+    <br>
+    <br>
+
+    <mat-form-field>
+      <label>
+        <input name="model" matInput placeholder="Model">
+      </label>
+    </mat-form-field>
+    <br>
+    <br>
+
+    <mat-form-field>
+      <label>
+        <input name="opis" matInput placeholder="Opis">
+      </label>
+    </mat-form-field>
+    <br>
+    <br>
+
+    <mat-form-field>
+      <label>
+        <input name="cenaZaDobe" matInput placeholder="Cena za dobę">
+      </label>
+    </mat-form-field>
+    <br>
+    <br>
+
+    <button class="btn-primary btn" type="submit" (submit)="sendForm()">Dodaj nowy samochod</button>
+  </form>
+</div>

@@ -1,1 +1,3 @@
-<app-lista-samochodow></app-lista-samochodow>
+<app-header></app-header>
+<app-lista-samochodow *ngIf="router.url != '/dodaj-samochod'"></app-lista-samochodow>
+<router-outlet></router-outlet>
