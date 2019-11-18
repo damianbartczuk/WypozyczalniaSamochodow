@@ -12,5 +12,9 @@ app.get('/*', function(req,res) {
   res.sendFile(path.join(__dirname+'/dist/WypozyczalniaSamochodow/index.html'));
 });
 
+app.post('/dodajSamochod', function (req, res) {
+  res.send(req.body);
+});
+
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 8080);
