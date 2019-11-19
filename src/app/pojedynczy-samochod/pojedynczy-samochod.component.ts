@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {SamochodyService} from '../samochody.service';
+import {SamochodyService} from '../serwisy/samochody.service';
 import {Samochod} from '../Samochod';
 import {Observable} from 'rxjs';
 

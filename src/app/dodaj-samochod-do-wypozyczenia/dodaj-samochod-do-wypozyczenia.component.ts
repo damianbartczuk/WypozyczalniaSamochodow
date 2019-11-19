@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {DodajSamochodService} from '../dodaj-samochod.service';
+import {DodajSamochodService} from '../serwisy/dodaj-samochod.service';
 import {Samochod} from '../Samochod';
 
 @Component({
