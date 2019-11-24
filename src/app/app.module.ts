@@ -12,10 +12,12 @@ import {MatChipsModule, MatInputModule, MatOptionModule, MatSelectModule} from '
 import {MatFileUploadModule} from 'angular-material-fileupload';
 import {ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ZalogujComponent} from './zaloguj/zaloguj.component';
 
 
 const appRoutes: Routes = [
   { path: 'dodaj-samochod', component: DodajSamochodDoWypozyczeniaComponent },
+  { path: 'zaloguj', component: ZalogujComponent },
 ];
 
 @NgModule({
@@ -24,7 +26,8 @@ const appRoutes: Routes = [
     PojedynczySamochodComponent,
     ListaSamochodowComponent,
     HeaderComponent,
-    DodajSamochodDoWypozyczeniaComponent
+    DodajSamochodDoWypozyczeniaComponent,
+    ZalogujComponent
   ],
   imports: [
     BrowserModule,

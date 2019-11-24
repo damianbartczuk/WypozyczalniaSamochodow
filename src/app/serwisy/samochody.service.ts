@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class SamochodyService {
-  readonly SAMOCHODY_RES_API = "http://localhost:9020/samochody";
+  readonly SAMOCHODY_RES_API = "http://localhost:9090/pobierz_samochody";
 
   constructor(private http: HttpClient) {
   }
