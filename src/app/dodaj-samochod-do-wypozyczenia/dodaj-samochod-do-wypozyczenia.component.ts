@@ -15,7 +15,6 @@ export class DodajSamochodDoWypozyczeniaComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private dodajSamochodService: DodajSamochodService) {
   }
   sendForm(event: any){
-    alert("stworzymy samochod");
     let samochod: Samochod = {
       marka: event.target.marka.value,
       model: event.target.model.value,
@@ -24,7 +23,8 @@ export class DodajSamochodDoWypozyczeniaComponent implements OnInit {
       logo : '',
       czyWypozyczony: false
     };
-    this.dodajSamochodService.zapiszSamochod(samochod);
+    this.dodajSamochodService.zapiszSamochod(samochod)
+      .subscribe(x => console.log("zapisany samochod: " + samochod));
   }
 
   ngOnInit() {
