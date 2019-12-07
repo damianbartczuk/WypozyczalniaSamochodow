@@ -13,11 +13,19 @@ import {MatFileUploadModule} from 'angular-material-fileupload';
 import {ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ZalogujComponent} from './zaloguj/zaloguj.component';
+import {DodajUzytkownikaComponent} from './dodaj-uzytkownika/dodaj-uzytkownika.component';
+import {StronaGlownaComponent} from './strona-glowna/strona-glowna.component';
+import {JwtModule} from '@auth0/angular-jwt';
 
 
 const appRoutes: Routes = [
   { path: 'dodaj-samochod', component: DodajSamochodDoWypozyczeniaComponent },
   { path: 'zaloguj', component: ZalogujComponent },
+  { path: 'dodaj_uzytkownika', component: DodajUzytkownikaComponent},
+  { path: 'pobierz_samochody', component: ListaSamochodowComponent},
+  {path: '', component: StronaGlownaComponent},
+  { path: '**', redirectTo: '' }
+
 ];
 
 @NgModule({
@@ -27,7 +35,9 @@ const appRoutes: Routes = [
     ListaSamochodowComponent,
     HeaderComponent,
     DodajSamochodDoWypozyczeniaComponent,
-    ZalogujComponent
+    ZalogujComponent,
+    DodajUzytkownikaComponent,
+    StronaGlownaComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +49,8 @@ const appRoutes: Routes = [
     MatFileUploadModule,
     ReactiveFormsModule,
     MatChipsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    JwtModule
 
 ],
   providers: [],
