@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {DodajSamochodService} from '../serwisy/dodaj-samochod.service';
 import {Samochod} from '../Samochod';
+import {CarDataService} from '../serwisy/car-data.service';
 
 @Component({
   selector: 'app-dodaj-samochod-do-wypozyczenia',
@@ -12,7 +12,7 @@ export class DodajSamochodDoWypozyczeniaComponent implements OnInit {
 
   dodajSamochodForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private dodajSamochodService: DodajSamochodService) {
+  constructor(private formBuilder: FormBuilder, private cds: CarDataService) {
   }
   sendForm(event: any){
     let samochod: Samochod = {
@@ -23,8 +23,8 @@ export class DodajSamochodDoWypozyczeniaComponent implements OnInit {
       logo : '',
       czyWypozyczony: false
     };
-    this.dodajSamochodService.zapiszSamochod(samochod)
-      .subscribe(x => console.log("zapisany samochod: " + samochod));
+    // this.dodajSamochodService.zapiszSamochod(samochod)
+    //   .subscribe(x => console.log("zapisany samochod: " + samochod));
   }
 
   ngOnInit() {

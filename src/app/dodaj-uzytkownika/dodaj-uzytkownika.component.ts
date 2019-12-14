@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UzytkownikService} from '../serwisy/uzytkownik.service';
 import {Uzytkownik} from '../Uzytkownik';
 import {FormBuilder} from '@angular/forms';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-dodaj-uzytkownika',
@@ -10,10 +11,14 @@ import {FormBuilder} from '@angular/forms';
 })
 export class DodajUzytkownikaComponent implements OnInit {
 
+private cookieValue: string;
 
-  constructor(private formBuilder: FormBuilder, private uzytkownikService: UzytkownikService) { }
+
+  constructor(private formBuilder: FormBuilder, private uzytkownikService: UzytkownikService, private cookie: CookieService) { }
 
   ngOnInit() {
+    this.cookie.set('cookie-name', 'our cookie value');
+    console.log(this.cookie.getAll())
   }
 
   public zapisz(event: any){

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {SamochodyService} from '../serwisy/samochody.service';
 import {Samochod} from '../Samochod';
 import {Observable} from 'rxjs';
+import {CarDataService} from '../serwisy/car-data.service';
 
 @Component({
   selector: 'app-pojedynczy-samochod',
@@ -12,10 +12,11 @@ export class PojedynczySamochodComponent implements OnInit {
 
   public samochody: Observable<Samochod[]>;
 
-  constructor(private samochodyService: SamochodyService) { }
+  constructor(private cds: CarDataService) {
+  }
 
   ngOnInit() {
-    this.samochody = this.samochodyService.getSamochody();
+    this.samochody = this.cds.getAll();
   }
 
   wypozyczSamochod(samochod: Samochod) {

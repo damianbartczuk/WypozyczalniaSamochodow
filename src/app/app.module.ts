@@ -16,6 +16,9 @@ import {ZalogujComponent} from './zaloguj/zaloguj.component';
 import {DodajUzytkownikaComponent} from './dodaj-uzytkownika/dodaj-uzytkownika.component';
 import {StronaGlownaComponent} from './strona-glowna/strona-glowna.component';
 import {JwtModule} from '@auth0/angular-jwt';
+import {DefaultDataServiceConfig, EntityDataModule, EntityDataModuleConfig, EntityMetadataMap} from '@ngrx/data';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
 
 
 const appRoutes: Routes = [
@@ -27,6 +30,28 @@ const appRoutes: Routes = [
   { path: '**', redirectTo: '' }
 
 ];
+
+
+const pluralNames = { Car: 'Samochod' };
+export const defaultDataServiceConfig: DefaultDataServiceConfig = {
+  root: "http://localhost:9090",
+  entityHttpResourceUrls: {
+    Samochod: {
+      entityResourceUrl: 'http://localhost:9090' + '/pobierz_samochody',
+      collectionResourceUrl: 'http://localhost:9090' + '/pobierz_samochody'
+    }
+  }
+}
+
+
+export const entityMetadata: EntityMetadataMap = {
+  Samochod: {},
+};
+
+export const entityConfig: EntityDataModuleConfig = {
+  entityMetadata,
+  pluralNames
+};
 
 @NgModule({
   declarations: [
@@ -50,10 +75,15 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     MatChipsModule,
     BrowserAnimationsModule,
-    JwtModule
-
+    JwtModule,
+    EntityDataModule,
+    StoreModule.forRoot([]),
+    EffectsModule.forRoot([]),
+    EntityDataModule.forRoot(entityConfig)
 ],
-  providers: [],
+  providers: [
+    { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
