@@ -16,13 +16,21 @@ import {ZalogujComponent} from './zaloguj/zaloguj.component';
 import {DodajUzytkownikaComponent} from './dodaj-uzytkownika/dodaj-uzytkownika.component';
 import {StronaGlownaComponent} from './strona-glowna/strona-glowna.component';
 import {JwtModule} from '@auth0/angular-jwt';
+import {AuthGuardService} from '../serwisy/auth-guard.service';
+import {RoleGuardService} from '../role-guard.service';
 
 
 const appRoutes: Routes = [
-  { path: 'dodaj-samochod', component: DodajSamochodDoWypozyczeniaComponent },
+  { path: 'dodaj-samochod',
+    component: DodajSamochodDoWypozyczeniaComponent,
+    canActivate: [RoleGuardService],
+    data: {
+    expectedRole: 'admin'
+    }
+    },
   { path: 'zaloguj', component: ZalogujComponent },
-  { path: 'dodaj_uzytkownika', component: DodajUzytkownikaComponent},
-  { path: 'pobierz_samochody', component: ListaSamochodowComponent},
+  { path: 'dodaj_uzytkownika', component: DodajUzytkownikaComponent, canActivate: [AuthGuardService]},
+  { path: 'pobierz_samochody', component: ListaSamochodowComponent, canActivate: [AuthGuardService]},
   {path: '', component: StronaGlownaComponent},
   { path: '**', redirectTo: '' }
 
