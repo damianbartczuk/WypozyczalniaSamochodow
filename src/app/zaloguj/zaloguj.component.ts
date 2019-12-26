@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {AuthService} from './auth.service';
 
 @Component({
@@ -10,21 +10,22 @@ import {AuthService} from './auth.service';
 export class ZalogujComponent implements OnInit {
 
   form:FormGroup;
-
+  tokenAutoryzacji: string;
   constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
 
   ngOnInit() {
+    this.form = new FormGroup({
+      nazwaUzytkownika: new FormControl(),
+      haslo: new FormControl()
+    });
   }
 
-
-  zaloguj() {
-    const val =  this.form.value;
-
-    if(val.email && val.password) {
-
-    }
-
-
+  zaloguj(username: string, password: string) {
+    console.log('metoda zaloguj username = ' + username + ' password = ' + password);
+    this.authService.authorizeWithUsernameAndPassword('dbartczuk', '0001')
+      .subscribe(pobranyToken => {
+        this.tokenAutoryzacji = pobranyToken;
+        console.log(this.tokenAutoryzacji);
+      });
   }
-
 }

@@ -75,7 +75,11 @@ export const entityConfig: EntityDataModuleConfig = {
     ReactiveFormsModule,
     MatChipsModule,
     BrowserAnimationsModule,
-    JwtModule,
+    JwtModule.forRoot({
+      config: {
+        throwNoTokenError: true
+      }
+    }),
     EntityDataModule,
     StoreModule.forRoot([]),
     EffectsModule.forRoot([]),
