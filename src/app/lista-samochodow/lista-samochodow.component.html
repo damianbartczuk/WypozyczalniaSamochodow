@@ -1,2 +1,13 @@
 <h1 id="samochodyDoWypozyczeniaHeader">Samochody do wypożyczenia</h1>
-<app-pojedynczy-samochod></app-pojedynczy-samochod>
+
+<li *ngFor="let x of samochody">
+  <app-pojedynczy-samochod
+    [cenaZaDobe]="x.cenaZaDobe"
+    [czyWypozyczony]="x.czyWypozyczony"
+    [logo]="x.logo"
+    [marka]="x.marka"
+    [model]="x.model"
+    [opis]="x.opis"
+  >
+  </app-pojedynczy-samochod>
+</li>

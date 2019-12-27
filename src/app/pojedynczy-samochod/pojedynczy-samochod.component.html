@@ -1,19 +1,14 @@
-<ul class="listaSamochodo">
-  <li *ngFor="let x of samochody | async">
-    <div class="card pojedynczySamochod" style="width: 18rem;">
-      <img src="{{x.logo}}" class="card-img-top" alt="bmwseria1">
-      <div class="card-body">
-        <h5 class="card-title">{{x.marka}} {{x.model}}</h5>
-        <p class="card-text">{{x.opis}}</p>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item pojedynczySamochod">Cena za dobę: {{x.cenaZaDobe}}</li>
-        <li class="list-group-item pojedynczySamochod">Czy wypożyczony: {{x.czyWypozyczony}}</li>
-      </ul>
-      <div class="card-body">
-          <button class="btn btn-primary" [disabled]="x.czyWypozyczony" (click)="wypozyczSamochod(x)">Wypożycz samochód</button>
-      </div>
+  <div class="card container">
+    <div class="card-header">
+      <b>{{ marka }} {{ model }} </b> <span *ngIf="czyWypozyczony"style="color: red">{{ALERT_NIEDOSTEPNY_SAMOCHOD}}</span>
     </div>
-  </li>
-</ul>
+    <div class="card-body" style="width: auto">
+      <img src="{{ logo }}" style="height: 50%; width: 70%; float: right">
+      <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text"> {{ opis }}</p>
+      <button class="btn btn-primary" [disabled]="czyWypozyczony" (click)="wypozyczSamochod()">
+        Wypożycz samochód
+      </button>
+    </div>
+  </div>
 
