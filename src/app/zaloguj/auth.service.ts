@@ -13,14 +13,11 @@ export class AuthService {
 
   authorizeWithUsernameAndPassword(username: string, password: string) {
 
-    let params = new URLSearchParams();
-    params.append('username', 'dbartczuk');
-    params.append('password', '0001');
-    params.append('grant_type','password');
-    params.append('client_id','fooClientIdPassword');
     let headers =
       new HttpHeaders({
-        'Content-Type': 'application/json'});
+        'Content-Type': 'application/json'
+      }
+        );
 
     return this.http.post<string>('http://localhost:9090/authenticate', {
         username: username,

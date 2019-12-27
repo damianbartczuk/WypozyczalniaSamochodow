@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UzytkownikService} from '../serwisy/uzytkownik.service';
 import {Uzytkownik} from '../Uzytkownik';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CookieService} from 'ngx-cookie-service';
 
 @Component({
@@ -11,22 +11,26 @@ import {CookieService} from 'ngx-cookie-service';
 })
 export class DodajUzytkownikaComponent implements OnInit {
 
-private cookieValue: string;
-
+  dodajUzytkownikaForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private uzytkownikService: UzytkownikService, private cookie: CookieService) { }
 
+
   ngOnInit() {
-    this.cookie.set('cookie-name', 'our cookie value');
-    console.log(this.cookie.getAll())
+    this.dodajUzytkownikaForm = this.formBuilder.group({
+      imie: ['', Validators.required],
+      nazwisko: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+    });
   }
 
-  public zapisz(event: any){
+  public zapisz(imie, nazwisko, nazwaUzytkownika, haslo){
     const u: Uzytkownik = <Uzytkownik> {
-      imie: event.target.imie.value,
-      nazwisko: event.target.nazwisko.value,
-      username: event.target.username.value,
-      password: event.target.password.value
+      imie: imie.value,
+      nazwisko: nazwisko.value,
+      username: nazwaUzytkownika.value,
+      password: haslo.value
     };
     this.uzytkownikService.zapisUzytkownika(u)
       .subscribe(

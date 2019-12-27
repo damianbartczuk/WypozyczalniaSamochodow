@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {AuthService} from './auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-zaloguj',
@@ -11,7 +12,10 @@ export class ZalogujComponent implements OnInit {
 
   form:FormGroup;
   tokenAutoryzacji: string;
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
+
+  constructor(private formBuilder: FormBuilder,
+              private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -26,6 +30,9 @@ export class ZalogujComponent implements OnInit {
       .subscribe(pobranyToken => {
         this.tokenAutoryzacji = pobranyToken;
         console.log(this.tokenAutoryzacji);
+        console.log('teraz jest przekierowanie');
       });
+
+    this.router.navigate(['/pobierz_samochody']);
   }
 }

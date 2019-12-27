@@ -1,6 +1,10 @@
 .pojedynczySamochod {
   background-color: bisque;
 }
+/*.container {*/
+/*  background: rgb(1,1,1);*/
+/*  background: linear-gradient(0deg, rgba(1,1,1,1) 0%, rgba(253,45,47,1) 100%);*/
+/*}*/
 
 .listaSamochodo {
   list-style-type: none;
@@ -8,8 +12,6 @@
  ul > li {
    display: inline-block;
    list-style-type:none;
-   /*width: 200px !important;*/
-   /*height: 200px !important;*/
 }
 
  p{

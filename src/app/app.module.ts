@@ -10,7 +10,7 @@ import {DodajSamochodDoWypozyczeniaComponent} from './dodaj-samochod-do-wypozycz
 import {RouterModule, Routes} from '@angular/router';
 import {MatChipsModule, MatInputModule, MatOptionModule, MatSelectModule} from '@angular/material';
 import {MatFileUploadModule} from 'angular-material-fileupload';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ZalogujComponent} from './zaloguj/zaloguj.component';
 import {DodajUzytkownikaComponent} from './dodaj-uzytkownika/dodaj-uzytkownika.component';
@@ -19,6 +19,7 @@ import {JwtModule} from '@auth0/angular-jwt';
 import {DefaultDataServiceConfig, EntityDataModule, EntityDataModuleConfig, EntityMetadataMap} from '@ngrx/data';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
+import {CookieService} from 'ngx-cookie-service';
 
 
 const appRoutes: Routes = [
@@ -26,7 +27,7 @@ const appRoutes: Routes = [
   { path: 'zaloguj', component: ZalogujComponent },
   { path: 'dodaj_uzytkownika', component: DodajUzytkownikaComponent},
   { path: 'pobierz_samochody', component: ListaSamochodowComponent},
-  {path: '', component: StronaGlownaComponent},
+  { path: '', component: StronaGlownaComponent},
   { path: '**', redirectTo: '' }
 
 ];
@@ -83,10 +84,12 @@ export const entityConfig: EntityDataModuleConfig = {
     EntityDataModule,
     StoreModule.forRoot([]),
     EffectsModule.forRoot([]),
-    EntityDataModule.forRoot(entityConfig)
+    EntityDataModule.forRoot(entityConfig),
+    FormsModule,
 ],
   providers: [
-    { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig }
+    { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig },
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

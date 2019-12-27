@@ -1,44 +1,66 @@
-<!--<form (ngSubmit)="zapisz()">-->
-<!--  <button class="btn-primary btn" type="submit">Zapisz Uzytkownika</button>-->
+<div class="container" style="background: #0074D9; margin-top: 20px;">
+  <form [formGroup]="dodajUzytkownikaForm" (ngSubmit)="zapisz(imie, nazwisko, nazwaUzytkownika, haslo)">
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">
+        <b>Podaj imie: </b>
+      </label>
+      <div class="col-sm-10">
+        <input #imie class="form-control-sm col-sm-10">
+      </div>
+    </div>
+  <div class="form-group row">
+    <label>
+      <b>Podaj nazwisko: </b> <input #nazwisko class="form-control-sm">
+    </label>
+  </div>
+      <div class="form-group row">
+        <label>
+          <b>Podaj nazwe uzytkownika: </b> <input class="form-control-sm" #nazwaUzytkownika>
+        </label>
+      </div>
+    <div class="form-group row">
+      <label>
+        <b>Podaj hasło: </b> <input #haslo type="password" class="form-control-sm">
+      </label>
+    </div>
+  </form>
+</div>
+
+
+<!--<form [formGroup]="dodajUzytkownikaForm" (ngSubmit)="zapisz(imie, nazwisko, nazwaUzytkownika, haslo)">-->
+<!--  <mat-form-field>-->
+<!--    <label>-->
+<!--      <input #imie matInput placeholder="Podaj Imie">-->
+<!--    </label>-->
+<!--  </mat-form-field>-->
+<!--  <br>-->
+<!--  <br>-->
+
+<!--  <mat-form-field>-->
+<!--    <label>-->
+<!--      <input #nazwisko matInput placeholder="Podaj nazwisko">-->
+<!--    </label>-->
+<!--  </mat-form-field>-->
+<!--  <br>-->
+<!--  <br>-->
+
+<!--  <mat-form-field>-->
+<!--    <label><input #nazwaUzytkownika matInput placeholder="Podaj nazwę użytkownika">-->
+<!--    </label>-->
+<!--  </mat-form-field>-->
+<!--  <br>-->
+<!--  <br>-->
+
+<!--  <mat-form-field>-->
+<!--    <label>-->
+<!--      <input #haslo type="password" matInput placeholder="Podaj hasło">-->
+<!--    </label>-->
+<!--  </mat-form-field>-->
+<!--  <br>-->
+<!--  <br>-->
+
+<!--  <button class="btn-primary btn" type="submit" (submit)="zapisz()">Zapisz Użytkownika</button>-->
 <!--</form>-->
-
-
-<form class="" [formGroup]="dodajSamochodForm" (ngSubmit)="sendForm($event)">
-  <mat-form-field>
-    <label>
-      <input name="marka" matInput placeholder="Marka">
-    </label>
-  </mat-form-field>
-  <br>
-  <br>
-
-  <mat-form-field>
-    <label>
-      <input name="model" matInput placeholder="Model">
-    </label>
-  </mat-form-field>
-  <br>
-  <br>
-
-  <mat-form-field>
-    <label>
-      <input name="opis" matInput placeholder="Opis">
-    </label>
-  </mat-form-field>
-  <br>
-  <br>
-
-  <mat-form-field>
-    <label>
-      <input name="cenaZaDobe" matInput placeholder="Cena za dobę">
-    </label>
-  </mat-form-field>
-  <br>
-  <br>
-
-  <button class="btn-primary btn" type="submit" (submit)="zapisz($event)">Zapisz Sam</button>
-</form>
-
 
 
 <!--<button class="btn-primary btn" (click)="zapisz()">Zapisz Uzytkownika</button>-->
