@@ -1,6 +1,7 @@
 nav{
-  background: rgb(0,36,33);
-  background: linear-gradient(90deg, rgba(0,36,33,1) 0%, rgba(9,61,121,1) 35%, rgba(0,140,255,1) 100%);
+  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  /*background: rgb(0,36,33);*/
+  /*background: linear-gradient(90deg, rgba(0,36,33,1) 0%, rgba(9,61,121,1) 35%, rgba(0,140,255,1) 100%);*/
 }
 nav.navbar {
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);

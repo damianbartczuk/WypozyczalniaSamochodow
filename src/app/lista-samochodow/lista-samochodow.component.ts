@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Samochod} from '../Samochod';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-lista-samochodow',
@@ -15,17 +15,19 @@ export class ListaSamochodowComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("wyswietlamy samochody");
+    var naglowki = new  HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYmFydGN6dWsiLCJleHAiOjE1Nzc5ODczMjIsImlhdCI6MTU3Nzk2OTMyMn0.Co43Kpgsw_MoKIp4l18426xe3orT8izEEZa1KvvHT09PcAV8yuiX2MDUrh2cdzEHgPWDa45u-dff3m6BYZFoPA',
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
+    });
+    console.log("wysylam request po samochody");
+    this.http.get<Samochod[]>('http://localhost:9090/api/car/pobierz_samochody', {headers: naglowki})
+      .subscribe(x => {
+       console.log("odbieram samochody");
+        this.samochody = x
 
-    const headerDict = {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT',
-      'Access-Control-Allow-Headers': '"Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers',
-      'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYmFydGN6dWsiLCJleHAiOjE1Nzc0MTU0OTgsImlhdCI6MTU3NzM5NzQ5OH0.EE2rdPr-ksIesw2pfJYmbeU_CWtXKFFn3qo1TukqwdFlafLzq-m36jAuK6y2PrT9wDC9G-zFDz3C8uPTSMY2vg'
-    };
-    let options = ({headers:headerDict});
-
-    this.http.get<Samochod[]>('http://localhost:9090/pobierz_samochody')//options
-      .subscribe(x => this.samochody = x);
+      });
   }
 
 

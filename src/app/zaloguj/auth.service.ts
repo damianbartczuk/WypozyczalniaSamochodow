@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {JwtResponse} from '../JwtResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +16,11 @@ export class AuthService {
 
     let headers =
       new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       }
         );
 
-    return this.http.post<string>('http://localhost:9090/authenticate', {
+    return this.http.post<JwtResponse>(UrlMapping.AUTHENTICATE_URL, {
         username: username,
          password: password,
       }, {headers: headers});

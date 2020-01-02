@@ -20,3 +20,6 @@
 .card-img-top{
   height: 200px;
 }
+
+.btn {background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%)}
+.btn:hover { background-position: right center; }
