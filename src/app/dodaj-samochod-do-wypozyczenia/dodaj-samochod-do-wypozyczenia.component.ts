@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Samochod} from '../Samochod';
-import {CarDataService} from '../serwisy/car-data.service';
+import {Router} from '@angular/router';
+import {SamochodyService} from '../serwisy/samochody.service';
 
 @Component({
   selector: 'app-dodaj-samochod-do-wypozyczenia',
@@ -12,7 +13,9 @@ export class DodajSamochodDoWypozyczeniaComponent implements OnInit {
 
   dodajSamochodForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private cds: CarDataService) {
+  constructor(private formBuilder: FormBuilder,
+              private router: Router,
+              private samochodyService:SamochodyService) {
   }
   sendForm(event: any){
     let samochod: Samochod = {
@@ -23,11 +26,16 @@ export class DodajSamochodDoWypozyczeniaComponent implements OnInit {
       logo : '',
       czyWypozyczony: false
     };
-    // this.dodajSamochodService.zapiszSamochod(samochod)
-    //   .subscribe(x => console.log("zapisany samochod: " + samochod));
+    this.samochodyService.zapiszSamochod(samochod)
+      .subscribe(x => console.log("zapisany samochod: " + samochod));
   }
 
   ngOnInit() {
+    if(localStorage.getItem('token') == null || localStorage.getItem('token') == undefined){
+      alert("Nie jestes zalogowany");
+      this.router.navigate(['/zaloguj']);
+    }
+
     this.dodajSamochodForm = this.formBuilder.group({
       marka: ['', Validators.required],
       model: ['', Validators.required],
