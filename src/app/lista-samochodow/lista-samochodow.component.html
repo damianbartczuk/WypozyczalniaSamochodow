@@ -1,7 +1,8 @@
 <h1 id="samochodyDoWypozyczeniaHeader">Samochody do wypożyczenia</h1>
-
+<p *ngIf="samochody == null">Nie znaleziono samochodow</p>
 <li *ngFor="let x of samochody">
   <app-pojedynczy-samochod
+    [id]="x.id"
     [cenaZaDobe]="x.cenaZaDobe"
     [czyWypozyczony]="x.czyWypozyczony"
     [logo]="x.logo"
@@ -11,3 +12,4 @@
   >
   </app-pojedynczy-samochod>
 </li>
+<app-paginacja [liczbaWynikowWyszukania]="samochody.length" (klikEvent)="odebranieEventuPaginacji($event)"> loading</app-paginacja>

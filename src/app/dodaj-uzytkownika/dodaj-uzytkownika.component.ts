@@ -3,6 +3,7 @@ import {UzytkownikService} from '../serwisy/uzytkownik.service';
 import {Uzytkownik} from '../Uzytkownik';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CookieService} from 'ngx-cookie-service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dodaj-uzytkownika',
@@ -13,10 +14,18 @@ export class DodajUzytkownikaComponent implements OnInit {
 
   dodajUzytkownikaForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private uzytkownikService: UzytkownikService, private cookie: CookieService) { }
+  constructor(private formBuilder: FormBuilder,
+              private uzytkownikService: UzytkownikService,
+              private cookie: CookieService,
+              private router: Router) { }
 
 
   ngOnInit() {
+    if(localStorage.getItem('token') == null || localStorage.getItem('token') == undefined){
+      alert("Nie jestes zalogowany");
+      this.router.navigate(['/zaloguj']);
+    }
+
     this.dodajUzytkownikaForm = this.formBuilder.group({
       imie: ['', Validators.required],
       nazwisko: ['', Validators.required],

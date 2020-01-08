@@ -7,7 +7,7 @@ import {JwtResponse} from '../JwtResponse';
   providedIn: 'root'
 })
 export class AuthService {
-
+  private readonly AUTHENTICATE_URL =  'http://localhost:8080/authenticate';
   constructor(private jwtHelper: JwtHelperService,
               private http: HttpClient) {
   }
@@ -20,7 +20,7 @@ export class AuthService {
       }
         );
 
-    return this.http.post<JwtResponse>(UrlMapping.AUTHENTICATE_URL, {
+    return this.http.post<JwtResponse>(this.AUTHENTICATE_URL, {
         username: username,
          password: password,
       }, {headers: headers});
