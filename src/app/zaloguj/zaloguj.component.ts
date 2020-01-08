@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {AuthService} from './auth.service';
 import {Router} from '@angular/router';
+import {JwtResponse} from '../JwtResponse';
 
 @Component({
   selector: 'app-zaloguj',
@@ -11,7 +12,7 @@ import {Router} from '@angular/router';
 export class ZalogujComponent implements OnInit {
 
   form:FormGroup;
-  tokenAutoryzacji: string;
+  tokenAutoryzacji: JwtResponse;
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
@@ -29,10 +30,11 @@ export class ZalogujComponent implements OnInit {
     this.authService.authorizeWithUsernameAndPassword('dbartczuk', '0001')
       .subscribe(pobranyToken => {
         this.tokenAutoryzacji = pobranyToken;
-        console.log(this.tokenAutoryzacji);
-        console.log('teraz jest przekierowanie');
+        console.log(this.tokenAutoryzacji.token);
+        localStorage.setItem('token', this.tokenAutoryzacji.token);
       });
 
+    console.log("token bez prefixów = " + this.tokenAutoryzacji.tokenWithoutPrefix);
     this.router.navigate(['/pobierz_samochody']);
   }
 }
