@@ -1,0 +1,14 @@
+<nav *ngIf="liczbaWynikowWyszukania > 0" class="pagination-content">
+  <ul class="pagination-content-list">
+    <ng-container>
+      <li *ngFor="let strona of liczbaStronArray">
+        <a
+          class="pagination-content-first"
+          [ngClass]="aktNumerStrony === strona ? 'activeSite' : ''"
+          (click)="zmienStrone(strona)"
+        >{{ strona }}</a
+        >
+      </li>
+    </ng-container>
+  </ul>
+</nav>

@@ -1,0 +1,49 @@
+:host {
+  color: #0061a3;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.pagination-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0 60px 0;
+}
+
+.pagination-content-first {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.pagination-content-first:hover {
+  color: #17345d;
+}
+
+.activeSite {
+  color: #0061a3;
+}
+
+.pagination-content-list {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+.pagination-content-list li {
+  text-decoration: none;
+  list-style: none;
+}
+.pagination-content-list li a {
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.pagination-content-list li a:hover {
+  color: #17345d;
+}
+
+.pagination-content-list a.activeSite {
+  color: #000000;
+  text-decoration: none !important;
+}
