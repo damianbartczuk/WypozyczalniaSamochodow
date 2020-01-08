@@ -1,16 +1,16 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-
 import {Uzytkownik} from '../Uzytkownik';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UzytkownikService {
+  private readonly BACK_URL = 'http://localhost:8080/';
+  private readonly  SAVE_USER = 'zapisz_uzytkownika/';
 
-  constructor(private http: HttpClient) {
-
-  }
+  constructor(private http: HttpClient,
+              ) {}
 
   zapisUzytkownika(u: Uzytkownik) {
     const httpOptions = {
@@ -18,7 +18,7 @@ export class UzytkownikService {
         'Content-Type': 'application/json'
       })
     };
-    return this.http.post<Uzytkownik>('http://localhost:9090/zapisz_uzytkownika/', u, httpOptions);
+    return this.http.post<Uzytkownik>(this.BACK_URL.concat(this.SAVE_USER) + this.SAVE_USER, u, httpOptions);
 
   }
 }
