@@ -61,10 +61,6 @@ const appRoutes: Routes = [
         throwNoTokenError: true
       }
     }),
-    // EntityDataModule,
-    // StoreModule.forRoot([]),
-    // EffectsModule.forRoot([]),
-    // EntityDataModule.forRoot(entityConfig),
     FormsModule,
     NgxLocalStorageModule
 

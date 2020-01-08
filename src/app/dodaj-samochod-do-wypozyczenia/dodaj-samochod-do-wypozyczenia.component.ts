@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Samochod} from '../Samochod';
+import {Samochod} from '../modele/Samochod';
 import {Router} from '@angular/router';
 import {SamochodyService} from '../serwisy/samochody.service';
 

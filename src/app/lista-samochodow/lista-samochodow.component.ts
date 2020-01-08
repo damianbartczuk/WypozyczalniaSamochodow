@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Samochod} from '../Samochod';
+import {Samochod} from '../modele/Samochod';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
 

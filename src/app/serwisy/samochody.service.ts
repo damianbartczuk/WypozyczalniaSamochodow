@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Samochod} from '../Samochod';
+import {Samochod} from '../modele/Samochod';
 import {Observable} from 'rxjs';
 
 @Injectable({

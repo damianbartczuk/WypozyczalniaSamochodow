@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {JwtResponse} from '../JwtResponse';
+import {JwtResponse} from '../modele/JwtResponse';
 
 @Injectable({
   providedIn: 'root'

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {AuthService} from './auth.service';
 import {Router} from '@angular/router';
-import {JwtResponse} from '../JwtResponse';
+import {JwtResponse} from '../modele/JwtResponse';
 
 @Component({
   selector: 'app-zaloguj',

@@ -1,5 +1,5 @@
 import {DefaultDataService, HttpUrlGenerator, Logger, QueryParams} from '@ngrx/data';
-import {Samochod} from '../Samochod';
+import {Samochod} from '../modele/Samochod';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
