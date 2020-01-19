@@ -1,0 +1,13 @@
+label {
+  text-align: right;
+  width: 400px;
+  line-height: 26px;
+}
+
+input {
+  flex: 0 0 200px;
+  margin-left: 10px;
+}
+.warrning{
+  height: 38px;
+}

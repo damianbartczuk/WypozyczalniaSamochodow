@@ -27,7 +27,7 @@ const appRoutes: Routes = [
   { path: 'dodaj_uzytkownika', component: DodajUzytkownikaComponent},
   { path: 'pobierz_samochody', component: ListaSamochodowComponent},
   { path: 'wyloguj', component: WylogujComponent},
-  { path: '', component: StronaGlownaComponent},
+  { path: 'strona_glowna/:id/:imie/:nazwisko', component: StronaGlownaComponent},
   { path: '**', redirectTo: '' }
 
 ];

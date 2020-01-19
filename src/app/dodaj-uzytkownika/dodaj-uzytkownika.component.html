@@ -1,66 +1,73 @@
-<div class="container" style="background: #0074D9; margin-top: 20px;">
-  <form [formGroup]="dodajUzytkownikaForm" (ngSubmit)="zapisz(imie, nazwisko, nazwaUzytkownika, haslo)">
+<!--<div class="container">-->
+<!--  <form-->
+<!--    [formGroup]="dodajUzytkownikaForm"-->
+<!--    (ngSubmit)="zapisz(imie, nazwisko, nazwaUzytkownika, haslo)"-->
+<!--  >-->
+<!--    <div class="form-group row">-->
+<!--      <label>-->
+<!--        <b>Podaj imie: </b>-->
+<!--      </label>-->
+<!--        <input #imie class="form-control" />-->
+<!--    </div>-->
+
+<!--    <div class="form-group row">-->
+<!--      <label>-->
+<!--        <b>Podaj nazwisko: </b>-->
+<!--      </label>-->
+<!--      <input #nazwisko class="form-control-sm">-->
+<!--    </div>-->
+
+<!--    <div class="form-group row">-->
+<!--      <label>-->
+<!--        <b>Podaj nazwe uzytkownika: </b>-->
+<!--      </label>-->
+<!--      <input class="form-control-sm" #nazwaUzytkownika />-->
+<!--    </div>-->
+<!--    <div class="form-group row">-->
+<!--      <label>-->
+<!--        <b>Podaj hasło: </b>-->
+<!--      </label>-->
+<!--      <input #haslo type="password" class="form-control-sm" />-->
+<!--    </div>-->
+
+<!--    <button type="submit" class="btn-primary btn">Zapisz użytkownika</button>-->
+<!--  </form>-->
+<!--</div>-->
+
+
+
+<form [formGroup]="dodajUzytkownikaForm" (ngSubmit)="zapisz(imie, nazwisko, nazwaUzytkownika, haslo)">
+  <div class="container">
+    <h1>Dodaj nowego użytkownika</h1>
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label">
-        <b>Podaj imie: </b>
-      </label>
-      <div class="col-sm-10">
-        <input #imie class="form-control-sm col-sm-10">
-      </div>
+      <label >Imię</label>
+      <input type="text" class="form-control" #imie formControlName="imie" placeholder="imie" name="imie">
+      <p *ngIf="dodajUzytkownikaForm.controls['imie'].invalid && dodajUzytkownikaForm.controls['imie'].touched" class="alert alert-danger warrning">Imię jest wymagane</p>
     </div>
-  <div class="form-group row">
-    <label>
-      <b>Podaj nazwisko: </b> <input #nazwisko class="form-control-sm">
-    </label>
+
+    <div class="form-group row">
+      <label>Nazwisko</label>
+      <input type="text" class="form-control" #nazwisko formControlName="nazwisko" placeholder="nazwisko" name="nazwisko">
+      <p *ngIf="dodajUzytkownikaForm.controls['nazwisko'].invalid && dodajUzytkownikaForm.controls['nazwisko'].touched" class="alert alert-danger warrning">Nazwisko jest wymagana</p>
+    </div>
+
+
+    <div class="form-group row">
+      <label>Nazwa użytkownika</label>
+      <input type="text" class="form-control" #nazwaUzytkownika formControlName="nazwaUzytkownika" placeholder="nazwa użytkownika" name="nazwaUzytkownika">
+      <p *ngIf="dodajUzytkownikaForm.controls['nazwaUzytkownika'].invalid && dodajUzytkownikaForm.controls['nazwaUzytkownika'].touched" class="alert alert-danger warrning">Nazwa użytkownika jest wymagana</p>
+    </div>
+
+
+    <div class="form-group row">
+      <label>Hasło</label>
+      <input type="password" class="form-control" #haslo formControlName="haslo" placeholder="haslo" name="haslo">
+      <p *ngIf="dodajUzytkownikaForm.controls['haslo'].invalid && dodajUzytkownikaForm.controls['haslo'].hasError('minlength') && dodajUzytkownikaForm.controls['haslo'].touched" class="alert alert-danger warrning">Hało musi zawierać przynajmniej 4 znaki</p>
+    </div>
+
+    <button class="btn-primary btn" type="submit" [disabled]="dodajUzytkownikaForm.invalid">Zapisz użytkownika</button>
   </div>
-      <div class="form-group row">
-        <label>
-          <b>Podaj nazwe uzytkownika: </b> <input class="form-control-sm" #nazwaUzytkownika>
-        </label>
-      </div>
-    <div class="form-group row">
-      <label>
-        <b>Podaj hasło: </b> <input #haslo type="password" class="form-control-sm">
-      </label>
-    </div>
-  </form>
-</div>
+</form>
 
 
-<!--<form [formGroup]="dodajUzytkownikaForm" (ngSubmit)="zapisz(imie, nazwisko, nazwaUzytkownika, haslo)">-->
-<!--  <mat-form-field>-->
-<!--    <label>-->
-<!--      <input #imie matInput placeholder="Podaj Imie">-->
-<!--    </label>-->
-<!--  </mat-form-field>-->
-<!--  <br>-->
-<!--  <br>-->
 
-<!--  <mat-form-field>-->
-<!--    <label>-->
-<!--      <input #nazwisko matInput placeholder="Podaj nazwisko">-->
-<!--    </label>-->
-<!--  </mat-form-field>-->
-<!--  <br>-->
-<!--  <br>-->
-
-<!--  <mat-form-field>-->
-<!--    <label><input #nazwaUzytkownika matInput placeholder="Podaj nazwę użytkownika">-->
-<!--    </label>-->
-<!--  </mat-form-field>-->
-<!--  <br>-->
-<!--  <br>-->
-
-<!--  <mat-form-field>-->
-<!--    <label>-->
-<!--      <input #haslo type="password" matInput placeholder="Podaj hasło">-->
-<!--    </label>-->
-<!--  </mat-form-field>-->
-<!--  <br>-->
-<!--  <br>-->
-
-<!--  <button class="btn-primary btn" type="submit" (submit)="zapisz()">Zapisz Użytkownika</button>-->
-<!--</form>-->
-
-
-<!--<button class="btn-primary btn" (click)="zapisz()">Zapisz Uzytkownika</button>-->

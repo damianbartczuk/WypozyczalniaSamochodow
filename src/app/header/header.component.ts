@@ -11,5 +11,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  sprawdzCzyZalogowany(){
+    return !(localStorage.getItem('token') == null || localStorage.getItem('token') == undefined)
+  }
 }

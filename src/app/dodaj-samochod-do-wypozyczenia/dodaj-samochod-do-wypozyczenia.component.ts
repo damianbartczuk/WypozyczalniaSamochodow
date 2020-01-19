@@ -17,12 +17,12 @@ export class DodajSamochodDoWypozyczeniaComponent implements OnInit {
               private router: Router,
               private samochodyService:SamochodyService) {
   }
-  sendForm(event: any){
+  sendForm(marka: string , model: string, opis: string, cenaZaDobe: string){
     let samochod: Samochod = {
-      marka: event.target.marka.value,
-      model: event.target.model.value,
-      opis: event.target.opis.value,
-      cenaZaDobe: event.target.cenaZaDobe.value,
+      marka: marka,
+      model: model,
+      opis: opis,
+      cenaZaDobe: cenaZaDobe,
       logo : '',
       czyWypozyczony: false
     };

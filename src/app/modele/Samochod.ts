@@ -4,6 +4,6 @@ export interface Samochod {
   model: string;
   logo: string;
   opis: string;
-  cenaZaDobe: number;
+  cenaZaDobe: string;
   czyWypozyczony: boolean;
 }

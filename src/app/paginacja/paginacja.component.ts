@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {SamochodyService} from '../serwisy/samochody.service';
 
 @Component({
   selector: 'app-paginacja',
@@ -6,16 +7,18 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   styleUrls: ['./paginacja.component.css']
 })
 export class PaginacjaComponent implements OnInit {
-  @Input() liczbaWynikowWyszukania;
+  @Input() liczbaWynikowWyszukania = 3;
   @Output() klikEvent = new EventEmitter();
 
   liczbaStron = 0;
   aktNumerStrony = 1;
   liczbaStronArray: Array<number>;
 
+  constructor(private samochodyService: SamochodyService){}
+
   ngOnInit() {
-    console.log("odebrana ilosc wynikow = " + this.liczbaWynikowWyszukania);
     this.stworzPaginacje(-1);
+    console.log("paginacja mysli, że mamy " + this.liczbaWynikowWyszukania + " samochodow");
   }
 
   zmienStrone(numerStrony: number) {

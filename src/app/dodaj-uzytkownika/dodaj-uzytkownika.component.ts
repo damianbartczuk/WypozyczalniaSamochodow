@@ -29,8 +29,8 @@ export class DodajUzytkownikaComponent implements OnInit {
     this.dodajUzytkownikaForm = this.formBuilder.group({
       imie: ['', Validators.required],
       nazwisko: ['', Validators.required],
-      username: ['', Validators.required],
-      password: ['', Validators.required],
+      nazwaUzytkownika: ['', Validators.required],
+      haslo: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
     });
   }
 
@@ -43,7 +43,11 @@ export class DodajUzytkownikaComponent implements OnInit {
     };
     this.uzytkownikService.zapisUzytkownika(u)
       .subscribe(
-        user => console.log(user.username, user.nazwisko)
+        user => {
+          console.log(user.username, user.nazwisko);
+          alert('Uzytkownik zostal zapisany i nadany zostal jemu id = ' + user.idUzytkownik);
+        }
+
       );
   }
 

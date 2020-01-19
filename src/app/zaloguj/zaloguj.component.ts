@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from './auth.service';
 import {Router} from '@angular/router';
-import {JwtResponse} from '../modele/JwtResponse';
+import {Subscription} from 'rxjs';
+import {UzytkownikService} from '../serwisy/uzytkownik.service';
 
 @Component({
   selector: 'app-zaloguj',
@@ -11,30 +12,59 @@ import {JwtResponse} from '../modele/JwtResponse';
 })
 export class ZalogujComponent implements OnInit {
 
-  form:FormGroup;
-  tokenAutoryzacji: JwtResponse;
+  private form: FormGroup;
+  private tokenAutoryzacji;
+  private idUzytkownikaZalogowanego = 0;
+  private imieUzytkownikaZalogowanego;
+  private nazwiskoUzytkownikaZalogowanego;
+  private response$: Subscription;
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
-              private router: Router) { }
+              private uzytkownikService: UzytkownikService,
+              private route: Router) {
+  }
 
   ngOnInit() {
     this.form = new FormGroup({
-      nazwaUzytkownika: new FormControl(),
-      haslo: new FormControl()
+      nazwaUzytkownika: new FormControl('', [Validators.required]),
+      haslo: new FormControl('', [Validators.required, Validators.minLength(4)])
     });
   }
 
   zaloguj(username: string, password: string) {
     console.log('metoda zaloguj username = ' + username + ' password = ' + password);
-    this.authService.authorizeWithUsernameAndPassword('dbartczuk', '0001')
-      .subscribe(pobranyToken => {
-        this.tokenAutoryzacji = pobranyToken;
-        console.log(this.tokenAutoryzacji.token);
-        localStorage.setItem('token', this.tokenAutoryzacji.token);
-      });
+    if (this.form.valid) {
+      this.autoryzujAndPrzypiszDoZmiennejAndZapiszWLocalStorage(username, password);
+    }
+  }
 
-    console.log("token bez prefixów = " + this.tokenAutoryzacji.tokenWithoutPrefix);
-    this.router.navigate(['/pobierz_samochody']);
+  private autoryzujAndPrzypiszDoZmiennejAndZapiszWLocalStorage(username: string, password: string) {
+    this.response$ = this.authService.authorizeWithUsernameAndPassword(username, password)
+      .subscribe(pobranyToken => {
+          console.log(pobranyToken.token);
+          this.tokenAutoryzacji = pobranyToken.token;
+          localStorage.setItem('token', this.tokenAutoryzacji);
+        },
+        error => alert('Podaleś złą nazwę użytkownika lub hasło'),
+        () => console.log('skonczylem auytoryzowac'));
+  }
+
+  public sprawdzCzyZalogowany(): boolean {
+    return !(localStorage.getItem('token') == undefined);
+  }
+
+  przedzjdzNaWidok() {
+    if (this.sprawdzCzyZalogowany()) {
+      this.uzytkownikService.pobierzUzytkownikaByToken().subscribe(
+        value => {
+          this.idUzytkownikaZalogowanego = value.idUzytkownik;
+          this.imieUzytkownikaZalogowanego = value.imie;
+          this.nazwiskoUzytkownikaZalogowanego = value.nazwisko;
+        },
+        error => console.log(error),
+        () => this.route.navigate(['/strona_glowna', this.idUzytkownikaZalogowanego, this.imieUzytkownikaZalogowanego, this.nazwiskoUzytkownikaZalogowanego]));
+      // }
+    }
   }
 }

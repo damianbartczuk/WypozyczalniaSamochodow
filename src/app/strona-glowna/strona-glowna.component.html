@@ -1,11 +1,28 @@
 <div class="container">
-  <h1>To jest strona główna na która jeszcze nie mam pomysłu</h1>
+
 </div>
 
 <header>
-  <h1>Wypożyczalnia samochodow</h1>
+  <h1>Cześć {{ idUzytkownikaZalogowanego }} - {{ imieUzytkownikaZalogowanego }} {{ nazwiskoUzytkownikaZalogowanego }}
+    <span *ngIf="imieUzytkownikaZalogowanego == undefined || idUzytkownikaZalogowanego == undefined ||
+     nazwiskoUzytkownikaZalogowanego == undefined"> musisz się jeszcze <a href routerLink="/zaloguj">zalogować</a> </span>
+    <br>Witaj w mojej wypożyczalnia samochodow</h1>
 </header>
 
 <section>
-  <h1>Section Content</h1>
+  <h1 *ngIf="iloscPobranychSamochodow > 0 ">Twoje wypożyczone samochody</h1>
+  <h1 *ngIf="iloscPobranychSamochodow == 0">Nie masz wypożyczonych samochodow</h1>
 </section>
+<li *ngFor="let x of samochody">
+  <app-pojedynczy-samochod
+    [id]="x.id"
+    [cenaZaDobe]="x.cenaZaDobe"
+    [czyWypozyczony]="x.czyWypozyczony"
+    [logo]="x.logo"
+    [marka]="x.marka"
+    [model]="x.model"
+    [opis]="x.opis"
+    [czyPokazacPrzycisk]="czyPokazacPrzycisk"
+  >
+  </app-pojedynczy-samochod>
+</li>

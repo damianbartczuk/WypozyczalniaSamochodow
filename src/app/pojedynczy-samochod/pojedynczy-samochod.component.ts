@@ -15,6 +15,7 @@ export class PojedynczySamochodComponent implements OnInit {
   @Input() cenaZaDobe: number;
   @Input() czyWypozyczony: boolean;
   @Input() opis: number;
+  @Input() czyPokazacPrzycisk = false;
   readonly ALERT_NIEDOSTEPNY_SAMOCHOD = 'Ten egzemplarz jest wypożyczony';
 
 

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Samochod} from '../modele/Samochod';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {SamochodyService} from '../serwisy/samochody.service';
 
 @Component({
   selector: 'app-lista-samochodow',
@@ -13,9 +14,13 @@ export class ListaSamochodowComponent implements OnInit {
   private readonly FRONT_URL = 'http://localhost:4200';
   private readonly CAR_API_POBIERZ_SAMOCHODY_URL = 'http://localhost:8080/pobierz_samochody';
   public samochody: Samochod[];
-  public liczbaWszystkichWynikow = 0;
+  public liczbaWszystkichWynikow = 3;
+  public samochodyDoWypozyczeniaLabel = 'Samochody do wypożyczenia';
+  public czyPokazacPrzycisk = true;
+
   constructor(private http: HttpClient,
-              private router: Router) {
+              private router: Router,
+              private samochodyService: SamochodyService) {
   }
 
   ngOnInit() {
@@ -23,21 +28,20 @@ export class ListaSamochodowComponent implements OnInit {
       alert("Nie jestes zalogowany");
       this.router.navigate(['/zaloguj']);
     }
-    console.log("wyswietlamy samochody");
-    var naglowki = new  HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + localStorage.getItem('token'),
-      'Access-Control-Allow-Origin': this.FRONT_URL,
-    });
     console.log("wysylam request po samochody");
-
-    this.http.get<Samochod[]>(this.CAR_API_POBIERZ_SAMOCHODY_URL, {headers: naglowki})
+    this.samochodyService.getSamochody()
       .subscribe(x => {
-       console.log("odbieram samochody " + x.length);
-        this.samochody = x;
-        this.liczbaWszystkichWynikow = x.length;
-        console.log("liczba wszystkich wynikow to " + this.liczbaWszystkichWynikow);
-      });
+      this.samochody = x;
+      this.liczbaWszystkichWynikow = x.length;
+      console.log("liczba wszystkich wynikow to!!!!!!!!!!! " + this.liczbaWszystkichWynikow);
+    });
+
+
+    this.samochodyService.getSamochody(0, 2).subscribe(x => {
+      console.log("odbieram samochody " + x.length);
+      this.samochody = x;
+      console.log("liczba wszystkich wynikow to " + this.liczbaWszystkichWynikow);
+    });
   }
 
   odebranieEventuPaginacji(event) {
@@ -45,7 +49,7 @@ export class ListaSamochodowComponent implements OnInit {
     var naglowki = new  HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + localStorage.getItem('token'),
-      'Access-Control-Allow-Origin': this.FRONT_URL,
+      'Access-Control-Allow-Origin': this.FRONT_URL
     });
     console.log("wysylam request po samochody");
     this.http.get<Samochod[]>(this.CAR_API_POBIERZ_SAMOCHODY_URL + '?pageNumber=' + (event-1), {headers: naglowki})

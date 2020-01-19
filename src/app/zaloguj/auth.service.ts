@@ -7,27 +7,24 @@ import {JwtResponse} from '../modele/JwtResponse';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly AUTHENTICATE_URL =  'http://localhost:8080/authenticate';
+  private readonly AUTHENTICATE_URL = 'http://localhost:8080/authenticate';
+  private readonly FRONT_URL = 'http://localhost:4200';
+
   constructor(private jwtHelper: JwtHelperService,
               private http: HttpClient) {
   }
 
   authorizeWithUsernameAndPassword(username: string, password: string) {
-
     let headers =
       new HttpHeaders({
-        'Content-Type': 'application/json',
-      }
-        );
-
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': this.FRONT_URL,
+        }
+      );
     return this.http.post<JwtResponse>(this.AUTHENTICATE_URL, {
-        username: username,
-         password: password,
-      }, {headers: headers});
+      username: username,
+      password: password,
+    }, {headers: headers});
   }
 
-  isAuthenticated(): boolean {
-    const token = localStorage.getItem('token');
-    return !this.jwtHelper.isTokenExpired(token);
-  }
 }
