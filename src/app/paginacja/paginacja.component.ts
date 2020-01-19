@@ -7,7 +7,7 @@ import {SamochodyService} from '../serwisy/samochody.service';
   styleUrls: ['./paginacja.component.css']
 })
 export class PaginacjaComponent implements OnInit {
-  @Input() liczbaWynikowWyszukania = 3;
+  @Input() liczbaWynikowWyszukania = 5;
   @Output() klikEvent = new EventEmitter();
 
   liczbaStron = 0;

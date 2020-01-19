@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class SamochodyService {
-  readonly SAMOCHODY_RES_API = "http://localhost:8080/ps";
+  readonly SAMOCHODY_RES_API = "http://localhost:8080/pobierz_samochody";
   readonly FRONT_URL = "http://localhost:4200/";
   readonly RENTAL_URL = "http://localhost:8080/get_rental/";
 
@@ -32,16 +32,17 @@ export class SamochodyService {
   }
 
   public getSamochody(pageNumber?: number, pageSize?: number): Observable<Samochod[]> {
-    alert('teraz pobieramy samochody');
+    console.log('getSamochody z serwisu '+pageNumber);
+    console.log('get samochody z serwisu ' + pageSize);
     var naglowki = new  HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + localStorage.getItem('token'),
       'Access-Control-Allow-Origin': this.FRONT_URL,
     });
-    alert('w serwisie pobieramy samochody');
     return pageNumber == undefined || pageSize == undefined ?
-      this.http.get<Samochod[]>(this.SAMOCHODY_RES_API, {headers: naglowki}) :
-      this.http.get<Samochod[]>(this.SAMOCHODY_RES_API + '?pageNumber=' + pageNumber + '&pageSize=' + pageSize, {headers: naglowki});
+      this.http.get<Samochod[]>(this.SAMOCHODY_RES_API + '?token=' + localStorage.getItem('token'), {headers: naglowki}) :
+      this.http.get<Samochod[]>(this.SAMOCHODY_RES_API +
+        '?pageNumber=' + pageNumber + '&pageSize=' + pageSize + '&token=' + localStorage.getItem('token'), {headers: naglowki});
   }
 
   public zapiszSamochod(samochod: Samochod): Observable<Samochod>{

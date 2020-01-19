@@ -1,5 +1,5 @@
 <h1 id="samochodyDoWypozyczeniaHeader">{{ samochodyDoWypozyczeniaLabel }}</h1>
-<!--<p *ngIf="samochody == null">{{ samochodyNotFound }}</p>-->
+<p *ngIf="samochody == null">{{ samochodyNotFound }}</p>
 <li *ngFor="let x of samochody">
   <app-pojedynczy-samochod
     [id]="x.id"
@@ -13,4 +13,4 @@
   >
   </app-pojedynczy-samochod>
 </li>
-<!--<app-paginacja [liczbaWynikowWyszukania]="liczbaWszystkichWynikow" (klikEvent)="odebranieEventuPaginacji($event)"></app-paginacja>-->
+<app-paginacja [liczbaWynikowWyszukania]="liczbaWszystkichWynikow" (klikEvent)="odebranieEventuPaginacji($event)"></app-paginacja>

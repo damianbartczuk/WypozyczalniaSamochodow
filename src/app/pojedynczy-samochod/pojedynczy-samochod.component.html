@@ -4,7 +4,7 @@
     </div>
     <div class="card-body" style="width: auto">
       <img src="{{ logo }}" style="height: 50%; width: 70%; float: right">
-      <h5 class="card-title">Special title treatment</h5>
+      <h5 class="card-title"><b>Krótki opis: </b></h5>
       <p class="card-text"> {{ opis }}</p>
       <button *ngIf="czyPokazacPrzycisk" class="btn btn-primary" [disabled]="czyWypozyczony" (click)="wypozyczSamochod()">
         Wypożycz samochód
