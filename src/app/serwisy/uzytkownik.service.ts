@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Uzytkownik} from '../modele/Uzytkownik';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class UzytkownikService {
 
   }
 
-  pobierzUzytkownikaByToken(){
+  pobierzUzytkownikaByToken() : Observable<Uzytkownik>{
     if(localStorage.getItem('token') !== null){
       const  naglowki = new  HttpHeaders({
         'Authorization': 'Bearer ' + localStorage.getItem('token'),

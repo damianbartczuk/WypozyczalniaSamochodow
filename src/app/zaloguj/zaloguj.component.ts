@@ -4,6 +4,7 @@ import {AuthService} from './auth.service';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {UzytkownikService} from '../serwisy/uzytkownik.service';
+import {Uzytkownik} from '../modele/Uzytkownik';
 
 @Component({
   selector: 'app-zaloguj',
@@ -14,16 +15,13 @@ export class ZalogujComponent implements OnInit {
 
   private form: FormGroup;
   private tokenAutoryzacji;
-  private idUzytkownikaZalogowanego = 0;
-  private imieUzytkownikaZalogowanego;
-  private nazwiskoUzytkownikaZalogowanego;
+  private zalogowanyUzytkownik: Uzytkownik;
   private response$: Subscription;
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
               private uzytkownikService: UzytkownikService,
-              private route: Router) {
-  }
+              private route: Router) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -58,12 +56,11 @@ export class ZalogujComponent implements OnInit {
     if (this.sprawdzCzyZalogowany()) {
       this.uzytkownikService.pobierzUzytkownikaByToken().subscribe(
         value => {
-          this.idUzytkownikaZalogowanego = value.idUzytkownik;
-          this.imieUzytkownikaZalogowanego = value.imie;
-          this.nazwiskoUzytkownikaZalogowanego = value.nazwisko;
+          this.zalogowanyUzytkownik = value;
         },
         error => console.log(error),
-        () => this.route.navigate(['/strona_glowna', this.idUzytkownikaZalogowanego, this.imieUzytkownikaZalogowanego, this.nazwiskoUzytkownikaZalogowanego]));
+        () => this.route.navigate(['/strona_glowna', this.zalogowanyUzytkownik.idUzytkownik,
+          this.zalogowanyUzytkownik.imie, this.zalogowanyUzytkownik.nazwisko]));
       // }
     }
   }
