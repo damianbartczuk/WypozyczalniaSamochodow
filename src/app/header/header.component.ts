@@ -16,14 +16,15 @@ export class HeaderComponent implements OnInit {
               private route: Router) { }
 
   ngOnInit() {
-    this.pobierzZalogowanegoUzytkownika();
+    if(localStorage.getItem('token') !== null){
+      this.pobierzZalogowanegoUzytkownika();
+    }
   }
 
   private pobierzZalogowanegoUzytkownika() {
     this.userService.pobierzUzytkownikaByToken()
       .subscribe(value => {
           this.zalogowanyUzytkownik = value;
-          // this.czyToAdmin = this.zalogowanyUzytkownik.roles[1].nazwa.toLowerCase() === 'admin'
         },
         error => console.log(error),
         () => {
@@ -44,5 +45,9 @@ export class HeaderComponent implements OnInit {
         return this.czyToAdmin;
       }
     }
+  }
+
+  sprawdzCzyZalogowany() {
+    return localStorage.getItem('token') !== null;
   }
 }

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SamochodyService} from '../serwisy/samochody.service';
 
 @Component({
@@ -7,7 +7,7 @@ import {SamochodyService} from '../serwisy/samochody.service';
   styleUrls: ['./paginacja.component.css']
 })
 export class PaginacjaComponent implements OnInit {
-  @Input() liczbaWynikowWyszukania = 5;
+  private liczbaWynikowWyszukania = 7;
   @Output() klikEvent = new EventEmitter();
 
   liczbaStron = 0;
@@ -17,6 +17,13 @@ export class PaginacjaComponent implements OnInit {
   constructor(private samochodyService: SamochodyService){}
 
   ngOnInit() {
+    this.samochodyService.getSamochody(0, 100).subscribe(
+      value => {
+        this.liczbaWynikowWyszukania = value.length;
+      },
+      error => console.log('niestety nie można policzyć samochodow'),
+      () => console.log('skonczylem liczyć samochody')
+    );
     this.stworzPaginacje(-1);
     console.log("paginacja mysli, że mamy " + this.liczbaWynikowWyszukania + " samochodow");
   }

@@ -49,6 +49,8 @@ export class DodajUzytkownikaComponent implements OnInit {
         }
 
       );
+
+    this.dodajUzytkownikaForm.reset();
   }
 
 }

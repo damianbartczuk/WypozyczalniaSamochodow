@@ -7,6 +7,7 @@ label {
 input {
   flex: 0 0 200px;
   margin-left: 10px;
+  margin-bottom: 20px;
 }
 .warrning{
   height: 38px;

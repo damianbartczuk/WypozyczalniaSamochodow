@@ -34,7 +34,10 @@ export class ListaSamochodowComponent implements OnInit {
       .subscribe(x => {
       this.samochody = x;
       this.liczbaWszystkichWynikow = x.length;
-    });
+    },
+        error => console.log('problem z pobieraniem samochodow'),
+        () => console.log('skonczyłem pobierac samochody')
+      );
   }
 
   odebranieEventuPaginacji(event) {

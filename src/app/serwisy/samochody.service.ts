@@ -10,6 +10,7 @@ export class SamochodyService {
   readonly SAMOCHODY_RES_API = "http://localhost:8080/pobierz_samochody";
   readonly FRONT_URL = "http://localhost:4200/";
   readonly RENTAL_URL = "http://localhost:8080/get_rental/";
+  readonly ZAPISZ_SAMOCHOD_URL = "http://localhost:8080/zapisz_samochod";
 
   constructor(private http: HttpClient) {
   }
@@ -46,14 +47,15 @@ export class SamochodyService {
   }
 
   public zapiszSamochod(samochod: Samochod): Observable<Samochod>{
-    alert('w serwisie zapiszSamochod = ' + samochod);
     let headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('token'),
+      'Access-Control-Allow-Origin': this.FRONT_URL,
     });
     let options = {
       headers: headers
     };
-    return this.http.post<Samochod>(this.SAMOCHODY_RES_API, samochod, options);
+    return this.http.post<Samochod>(this.ZAPISZ_SAMOCHOD_URL, samochod, options);
   }
 
 }

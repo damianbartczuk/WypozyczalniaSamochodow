@@ -27,7 +27,12 @@ export class DodajSamochodDoWypozyczeniaComponent implements OnInit {
       czyWypozyczony: false
     };
     this.samochodyService.zapiszSamochod(samochod)
-      .subscribe(x => console.log("zapisany samochod: " + samochod));
+      .subscribe(x => console.log("zapisany samochod: " + x),
+        error => alert('Nie udało się zapisać samochodu'),
+        () => alert('Zapisałem ' + samochod.marka)
+      );
+
+    this.dodajSamochodForm.reset();
   }
 
   ngOnInit() {
@@ -40,7 +45,7 @@ export class DodajSamochodDoWypozyczeniaComponent implements OnInit {
       marka: ['', Validators.required],
       model: ['', Validators.required],
       opis: ['', Validators.required],
-      cenaZaDobe: ['', Validators.required],
+      cenaZaDobe: ['', Validators.required]
     });
   }
 
