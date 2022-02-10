@@ -11,7 +11,7 @@
 
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" (click)="przekierujNaStroneGlowna()" *ngIf="sprawdzCzyZalogowany()" style="color: white">Strona główna
+            <a class="nav-link" (click)="przekierujNaStroneGlowna()" *ngIf="sprawdzCzyZalogowany()" style="color: white; cursor: pointer">Strona główna
             </a>
           </li>
           <li class="nav-item">
@@ -24,7 +24,7 @@
             <a class="nav-link" routerLink="/dodaj_uzytkownika" *ngIf="czyToAdmin && sprawdzCzyZalogowany()" style="color: white">Dodaj użytkownika</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/pobierz_samochody" *ngIf="czyToAdmin && sprawdzCzyZalogowany()" style="color: white" >Wyswietl samochody do wypożyczenia</a>
+            <a class="nav-link" routerLink="/pobierz_samochody" *ngIf="sprawdzCzyZalogowany()" style="color: white" >Wyswietl samochody do wypożyczenia</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" *ngIf="sprawdzCzyZalogowany()" routerLink="/wyloguj" style="color: white">Wyloguj się!</a>

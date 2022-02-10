@@ -13,10 +13,10 @@ import {Uzytkownik} from '../modele/Uzytkownik';
 })
 export class ZalogujComponent implements OnInit {
 
-  private form: FormGroup;
-  private tokenAutoryzacji;
-  private zalogowanyUzytkownik: Uzytkownik;
-  private response$: Subscription;
+  form: FormGroup;
+  tokenAutoryzacji;
+  zalogowanyUzytkownik: Uzytkownik;
+  response$: Subscription;
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
@@ -30,10 +30,12 @@ export class ZalogujComponent implements OnInit {
     });
   }
 
-  zaloguj(username: string, password: string) {
+  public zaloguj(username: string, password: string) {
     console.log('metoda zaloguj username = ' + username + ' password = ' + password);
     if (this.form.valid) {
       this.autoryzujAndPrzypiszDoZmiennejAndZapiszWLocalStorage(username, password);
+      console.log('cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc');
+      this.przedzjdzNaWidok();
     }
   }
 
@@ -52,16 +54,20 @@ export class ZalogujComponent implements OnInit {
     return !(localStorage.getItem('token') == undefined);
   }
 
-  przedzjdzNaWidok() {
-    if (this.sprawdzCzyZalogowany()) {
-      this.uzytkownikService.pobierzUzytkownikaByToken().subscribe(
-        value => {
-          this.zalogowanyUzytkownik = value;
-        },
-        error => console.log(error),
-        () => this.route.navigate(['/strona_glowna', this.zalogowanyUzytkownik.idUzytkownik,
-          this.zalogowanyUzytkownik.imie, this.zalogowanyUzytkownik.nazwisko]));
-      // }
-    }
+  public przedzjdzNaWidok() {
+    setTimeout(()=>{
+      if (this.sprawdzCzyZalogowany()) {
+        this.uzytkownikService.pobierzUzytkownikaByToken().subscribe(
+          value => {
+            console.log('uzytkownik z rolami!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+            console.log(value);
+            this.zalogowanyUzytkownik = value;
+          },
+          error => console.log(error),
+          () => this.route.navigate(['/strona_glowna', this.zalogowanyUzytkownik.idUzytkownik,
+            this.zalogowanyUzytkownik.imie, this.zalogowanyUzytkownik.nazwisko]));
+      }
+    }, 1000)
+
   }
 }

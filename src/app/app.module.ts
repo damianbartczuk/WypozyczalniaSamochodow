@@ -9,7 +9,7 @@ import {HeaderComponent} from './header/header.component';
 import {DodajSamochodDoWypozyczeniaComponent} from './dodaj-samochod-do-wypozyczenia/dodaj-samochod-do-wypozyczenia.component';
 import {RouterModule, Routes} from '@angular/router';
 import {MatChipsModule, MatInputModule, MatOptionModule, MatSelectModule} from '@angular/material';
-import {MatFileUploadModule} from 'angular-material-fileupload';
+// import {MatFileUploadModule} from 'angular-material-fileupload';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ZalogujComponent} from './zaloguj/zaloguj.component';
@@ -20,6 +20,8 @@ import {CookieService} from 'ngx-cookie-service';
 import {NgxLocalStorageModule} from 'ngx-localstorage';
 import {PaginacjaComponent} from './paginacja/paginacja.component';
 import {WylogujComponent} from './wyloguj/wyloguj.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from '@angular/material/core';
 
 const appRoutes: Routes = [
   { path: 'dodaj-samochod', component: DodajSamochodDoWypozyczeniaComponent },
@@ -52,7 +54,8 @@ const appRoutes: Routes = [
     MatOptionModule,
     MatSelectModule,
     MatInputModule,
-    MatFileUploadModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     ReactiveFormsModule,
     MatChipsModule,
     BrowserAnimationsModule,

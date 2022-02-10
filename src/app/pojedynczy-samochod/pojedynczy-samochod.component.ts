@@ -1,12 +1,14 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RentalService} from '../serwisy/rental.service';
+import {MatDatepickerInputEvent} from '@angular/material/datepicker'
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-pojedynczy-samochod',
   templateUrl: './pojedynczy-samochod.component.html',
   styleUrls: ['./pojedynczy-samochod.component.css']
 })
-export class PojedynczySamochodComponent implements OnInit {
+export class PojedynczySamochodComponent {
 
   @Input() id: number;
   @Input() logo: string;
@@ -14,14 +16,19 @@ export class PojedynczySamochodComponent implements OnInit {
   @Input() model: string;
   @Input() cenaZaDobe: number;
   @Input() czyWypozyczony: boolean;
-  @Input() opis: number;
+  @Input() opis: string;
   @Input() czyPokazacPrzycisk = false;
-  readonly ALERT_NIEDOSTEPNY_SAMOCHOD = 'Ten egzemplarz jest wypożyczony';
+  @Input() dataOd: Date;
+  @Input() dataDo: Date;
 
+  events: string[] = [];
+
+  range = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl(),
+  });
 
   constructor(private rentalService: RentalService) {}
-
-  ngOnInit() {}
 
   wypozyczSamochod() {
     console.log('id do wypozyczenia = ' + this.id);

@@ -1,5 +1,5 @@
 <h1 id="samochodyDoWypozyczeniaHeader">{{ samochodyDoWypozyczeniaLabel }}</h1>
-<p *ngIf="samochody == null">{{ samochodyNotFound }}</p>
+<p *ngIf="samochody == null || samochody == undefined || samochody.length == 0">{{ samochodyNotFound }}</p>
 <li *ngFor="let x of samochody">
   <app-pojedynczy-samochod
     [id]="x.id"

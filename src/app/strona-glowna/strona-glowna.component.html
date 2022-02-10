@@ -13,7 +13,7 @@
   <h1 *ngIf="iloscPobranychSamochodow > 0 ">Twoje wypożyczone samochody</h1>
   <h1 *ngIf="iloscPobranychSamochodow == 0">Nie masz wypożyczonych samochodow</h1>
 </section>
-<li *ngFor="let x of samochody">
+<li *ngFor="let x of samochodyDto">
   <app-pojedynczy-samochod
     [id]="x.id"
     [cenaZaDobe]="x.cenaZaDobe"
@@ -23,6 +23,8 @@
     [model]="x.model"
     [opis]="x.opis"
     [czyPokazacPrzycisk]="czyPokazacPrzycisk"
+    [dataOd]="x.dataOd"
+    [dataDo]="x.dataDo"
   >
   </app-pojedynczy-samochod>
 </li>

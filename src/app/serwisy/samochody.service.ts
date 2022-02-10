@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Samochod} from '../modele/Samochod';
 import {Observable} from 'rxjs';
+import {SamochodDto} from "../modele/SamochodDto";
 
 @Injectable({
   providedIn: 'root'
@@ -26,10 +27,10 @@ export class SamochodyService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + localStorage.getItem('token'),
-        'Access-Control-Allow-Origin': this.FRONT_URL,
+        'Access-Control-Allow-Origin': '*',
       })
     };
-    return this.http.get<Samochod[]>(this.RENTAL_URL + id, httpOptions);
+    return this.http.get<SamochodDto[]>(this.RENTAL_URL + id, httpOptions);
   }
 
   public getSamochody(pageNumber?: number, pageSize?: number): Observable<Samochod[]> {
@@ -38,7 +39,9 @@ export class SamochodyService {
     var naglowki = new  HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + localStorage.getItem('token'),
-      'Access-Control-Allow-Origin': this.FRONT_URL,
+      'Access-Control-Allow-Origin': '*'
+      // 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'
+
     });
     return pageNumber == undefined || pageSize == undefined ?
       this.http.get<Samochod[]>(this.SAMOCHODY_RES_API + '?token=' + localStorage.getItem('token'), {headers: naglowki}) :
@@ -50,7 +53,7 @@ export class SamochodyService {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + localStorage.getItem('token'),
-      'Access-Control-Allow-Origin': this.FRONT_URL,
+      'Access-Control-Allow-Origin': '*'
     });
     let options = {
       headers: headers

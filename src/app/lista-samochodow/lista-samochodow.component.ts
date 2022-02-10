@@ -17,7 +17,7 @@ export class ListaSamochodowComponent implements OnInit {
   public liczbaWszystkichWynikow = 5;
   public samochodyDoWypozyczeniaLabel = 'Samochody do wypożyczenia';
   public czyPokazacPrzycisk = true;
-  private samochodyNotFound = 'Nie znaleziono samochodow';
+  public samochodyNotFound = 'Nie znaleziono samochodow';
 
   constructor(private http: HttpClient,
               private router: Router,
@@ -34,6 +34,9 @@ export class ListaSamochodowComponent implements OnInit {
       .subscribe(x => {
       this.samochody = x;
       this.liczbaWszystkichWynikow = x.length;
+          console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Skonczylem pobierac auta');
+          console.log(x);
+          console.log(x.length);
     },
         error => console.log('problem z pobieraniem samochodow'),
         () => console.log('skonczyłem pobierac samochody')
@@ -44,7 +47,7 @@ export class ListaSamochodowComponent implements OnInit {
     var naglowki = new  HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + localStorage.getItem('token'),
-      'Access-Control-Allow-Origin': this.FRONT_URL
+      'Access-Control-Allow-Origin': '*'
     });
     this.http.get<Samochod[]>(this.CAR_API_POBIERZ_SAMOCHODY_URL + '?pageNumber=' + (event-1)+ '&token='+ localStorage.getItem('token'), {headers: naglowki})
       .subscribe(x => {

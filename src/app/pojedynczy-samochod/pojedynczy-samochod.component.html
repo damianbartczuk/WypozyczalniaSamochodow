@@ -1,11 +1,19 @@
   <div class="card container">
-    <div class="card-header">
-      <b>{{ marka }} {{ model }} </b> <span *ngIf="czyWypozyczony"style="color: red">{{ALERT_NIEDOSTEPNY_SAMOCHOD}}</span>
-    </div>
     <div class="card-body" style="width: auto">
       <img src="{{ logo }}" style="height: 50%; width: 70%; float: right">
       <h5 class="card-title"><b>Krótki opis: </b></h5>
       <p class="card-text"> {{ opis }}</p>
+      <h5 class="card-title"><b>Cena za dobę: </b></h5>
+      <p class="card-text"> {{ cenaZaDobe }}</p>
+      <h5 class="card-title"><b>Marka: </b></h5>
+      <p class="card-text"> {{ marka }}</p>
+      <h5 class="card-title"><b>Model: </b></h5>
+      <p class="card-text"> {{ model }}</p>
+      <h5 class="card-title"><b>Data od: </b></h5>
+      <p class="card-text"> {{dataOd | date:'mediumDate'}} </p>
+      <h5 class="card-title"><b>Data do: </b></h5>
+      <p class="card-text"> {{ dataDo | date:'mediumDate'}}</p>
+
       <button *ngIf="czyPokazacPrzycisk" class="btn btn-primary" [disabled]="czyWypozyczony" (click)="wypozyczSamochod()">
         Wypożycz samochód
       </button>

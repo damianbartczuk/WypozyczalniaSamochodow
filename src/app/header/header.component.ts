@@ -10,8 +10,8 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  private zalogowanyUzytkownik: Uzytkownik;
-  private czyToAdmin = false;
+  zalogowanyUzytkownik: Uzytkownik;
+  czyToAdmin = false;
   constructor(private userService: UzytkownikService,
               private route: Router) { }
 
@@ -39,6 +39,8 @@ export class HeaderComponent implements OnInit {
   }
 
   zweryfikujCzyToAdmin(){
+    console.log('zweryfikujCzyToAdmin');
+    console.log(this.zalogowanyUzytkownik.roles.length)
     for(var x = 0; this.zalogowanyUzytkownik.roles.length; x++){
       if(this.zalogowanyUzytkownik.roles[x].nazwa === 'admin'){
         this.czyToAdmin = true;
